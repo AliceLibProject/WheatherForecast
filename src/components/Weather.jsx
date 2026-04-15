@@ -11,9 +11,9 @@ const Weather = () => {
   
     const fetchWeatherData = async () => {
       try {
-        const currentResponse = await axios.get('http://www.mytsite.somee.com/forecast/current'); // URL для получения текущего прогноза
-        const dailyResponse = await axios.get('http://www.mytsite.somee.com/forecast/three-day'); // URL для получения 3-дневного прогноза
-        const hourlyResponse = await axios.get('http://www.mytsite.somee.com/forecast/day-by-hours'); // URL для получения почасового прогноза
+        const currentResponse = await axios.get('https://www.mytsite.somee.com/forecast/current'); // URL для получения текущего прогноза
+        const dailyResponse = await axios.get('https://www.mytsite.somee.com/forecast/three-day'); // URL для получения 3-дневного прогноза
+        const hourlyResponse = await axios.get('https://www.mytsite.somee.com/forecast/day-by-hours'); // URL для получения почасового прогноза
   
         setCurrentWeather(currentResponse.data);
         setDailyForecast(dailyResponse.data);
