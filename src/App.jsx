@@ -1,3 +1,4 @@
+import * as React from 'react';
 import Weather from './components/Weather';
 
 const App = () => {
