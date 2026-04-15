@@ -4,13 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --mode development",
+    "build": "webpack --mode production",
     "start": "webpack serve --mode development",
     "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "C:/Users/Павел/Desktop/Study/.repo.git/"
   },
   "author": "",
   "license": "ISC",
