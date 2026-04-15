@@ -1,0 +1,9 @@
+$font-size: 1rem;
+$font-color: lch(28 99 35);
+
+@import "../node_modules/bootstrap/scss/bootstrap.scss";
+
+html {
+  font-size: $font-size;
+  color: $font-color;
+}
