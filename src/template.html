@@ -1,12 +1,81 @@
-<!-- src/template.html -->
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title><%= htmlWebpackPlugin.options.title %></title>
-  </head>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Centered Blocks Page</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            
+		  background-image: url('site_bg21.jpg');
+		  background-size: cover;
+		  background-position: center;
+		  background-repeat: no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
 
-  <body>
-    <div id="root">
-    </div>
-  </body>
+        .block {
+            text-align: center;
+            margin: 20px;
+            width: 80%;
+            border-radius: 12px;
+        }
+
+        .top-block {
+			background: linear-gradient(
+				to top,				
+				rgba(255, 255, 255, 0.3) 85%,
+				rgba(255, 255, 255, 0.1) 15%
+			  );
+			backdrop-filter: blur(3px); /* Эффект размытия */
+			-webkit-backdrop-filter: blur(10px); /* Для поддержки Safari (может потребоваться префикс) */
+            color: white;
+            padding: 20px;
+            text-align: left;
+        }
+
+        .middle-block {
+            background-color: #d3d3d3; /* Светло-серый */
+            padding: 20px;
+            display: flex;
+            flex-direction: row; /* Выровнять элементы по горизонтали */
+            gap: 10px; /* Промежуток между блоками */
+        }
+
+        .middle-item {
+            flex: 1; /* Направляет элементы занимать одинаковую ширину */
+            background-color: #e0e0e0; /* Чуть светлее цвета родителя */
+            padding: 10px;
+            color: #333; /* Темно-серый цвет текста */
+            border-radius: 5px; /* Закругленные углы для элементов */
+            text-align: center; /* Центрировать текст внутри элементов */
+        }
+
+        .bottom-block {
+            background-color: #f0f0f0; /* Светло-серый цвет */
+            padding: 20px;
+            border: 1px solid darkgray;
+            border-collapse: collapse;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border-top: 1px solid darkgray; /* Темно-серый горизонтальный границы */
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body id="root">
+</body>
 </html>

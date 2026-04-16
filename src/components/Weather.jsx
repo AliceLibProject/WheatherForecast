@@ -30,40 +30,45 @@ const Weather = () => {
 
   return (
     <>
-        <div className="App">
-          <h1>Прогноз погоды</h1>
-          
-          <div className="current-weather">
-            {currentWeather && (
-              <div>
-                <h2>Текущий прогноз</h2>
-                <p>Температура: {currentWeather.temperature} °C</p>
-                <p>Состояние: {currentWeather.condition}</p>
-              </div>
+        <div class="block top-block">
+          <h2>Текущий прогноз</h2>
+          {currentWeather && ( 
+            <>
+              <p>Температура: {currentWeather.temperature} °C</p>
+              <p>Состояние: {currentWeather.condition}</p>
+            </>
             )}
-          </div>
-          
-          <div className="daily-forecast">
-            <h2>3-дневный прогноз</h2>
-            <ul>
-              {dailyForecast.map((day, index) => (
-                <li key={index}>
-                  <p>{day.date}: {day.temperature} °C, {day.condition}</p>
-                </li>
-              ))}
-            </ul>
-          </div>
+        </div>
 
-          <div className="hourly-forecast">
+        <div class="block middle-block">
+          <h2>3-дневный прогноз</h2>
+          {dailyForecast.map((day, index) => (
+            <div class="middle-item" key={index}>
+                      <p>Date {day.date}: Temp. {day.temperature} °C, Cond {day.condition}</p>
+                    </div>
+                  ))}
+        </div>
+
+        <div class="block bottom-block">
             <h2>Почасовой прогноз</h2>
-            <ul>
-              {hourlyForecast.map((hour, index) => (
-                <li key={index}>
-                  <p>{hour.time}: {hour.temperature} °C, {hour.condition}</p>
-                </li>
-              ))}
-            </ul>
-          </div>
+            <table>
+                <thead>
+                  <tr>
+                        <th>Время</th>
+                        <th>Температура</th>
+                        <th>Состояние</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {hourlyForecast.map((hour, index) => (
+                    <tr key={index}>
+                      <td>{hour.time}</td>
+                      <td>{hour.temperature} °C</td>
+                      <td>{hour.condition} °C</td> 
+                    </tr>
+                  ))}
+                </tbody>
+            </table>
         </div>
         
         <button type="button" class="btn btn-secondary" onClick={()=>fetchWeatherData()}>Обновить данные по прогнозу</button>
