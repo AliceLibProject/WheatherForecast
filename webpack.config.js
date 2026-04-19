@@ -12,6 +12,7 @@ module.exports = {
         path: path.resolve(__dirname,'./build'),
         filename: '[name].[hash].js'
     },
+    devtool: 'source-map',
     module: {
         rules: [
             {

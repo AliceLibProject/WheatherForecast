@@ -11,13 +11,13 @@ const Weather = () => {
   
     const fetchWeatherData = async () => {
       try {
-        const currentResponse = await axios.get('https://www.mytsite.somee.com/forecast/current'); // URL для получения текущего прогноза
-        const dailyResponse = await axios.get('https://www.mytsite.somee.com/forecast/three-day'); // URL для получения 3-дневного прогноза
-        const hourlyResponse = await axios.get('https://www.mytsite.somee.com/forecast/day-by-hours'); // URL для получения почасового прогноза
+        const currentResponse = await axios.get('https://www.mytsite.somee.com/api/weatherforecast/current'); // URL для получения текущего прогноза
+        const dailyResponse = await axios.get('https://www.mytsite.somee.com/api/weatherforecast/three-day'); // URL для получения 3-дневного прогноза
+        //const hourlyResponse = await axios.get('https://www.mytsite.somee.com/api/weatherforecast/day-by-hours'); // URL для получения почасового прогноза
   
         setCurrentWeather(currentResponse.data);
         setDailyForecast(dailyResponse.data);
-        setHourlyForecast(hourlyResponse.data);
+        //setHourlyForecast(hourlyResponse.data);
 
       } catch (error) {
         console.error('Ошибка при получении данных о погоде', error);
@@ -30,26 +30,40 @@ const Weather = () => {
 
   return (
     <>
-        <div class="block top-block">
-          <h2>Текущий прогноз</h2>
+        <div className={"block top-block"}>          
+          {/* latitude longtitude */}
           {currentWeather && ( 
             <>
-              <p>Температура: {currentWeather.temperature} °C</p>
-              <p>Состояние: {currentWeather.condition}</p>
+              <div className={"header"}>
+                <div className={'first'}>Прогноз на сегодня</div>
+                <div>{currentWeather.place.country} {currentWeather.place.placeName}</div>
+              </div>
+              <p>Облачность : {currentWeather.currentWeather.cloud}</p>
+              {/* <p>{currentWeather.currentWeather.dateTime}</p> */}
+              <p>Температура по ощущению : {currentWeather.currentWeather.feelsLike}</p>
+              <p>Влажность : {currentWeather.currentWeather.humidity}</p>
+              <p>Давление : {currentWeather.currentWeather.pressure}</p>
+              <p>Температура : {currentWeather.currentWeather.temperature} C</p>
+              <p>Направление ветра : {currentWeather.currentWeather.windDirection}</p>
+              <p>Сила ветра : {currentWeather.currentWeather.windSpeed}</p>
             </>
             )}
         </div>
 
-        <div class="block middle-block">
-          <h2>3-дневный прогноз</h2>
+        <div className={"block middle-block"}>
+          
+          <div>3-дневный прогноз</div>
+          <div className={'row'}>
           {dailyForecast.map((day, index) => (
             <div class="middle-item" key={index}>
-                      <p>Date {day.date}: Temp. {day.temperature} °C, Cond {day.condition}</p>
+                      <p>Влажность {day.avgHumidity} мм </p>
+                      <p> Средняя температура. {day.temperature} °C </p>
+                      <p> Скорость ветра {day.wind} m\c</p>
                     </div>
                   ))}
-        </div>
+        </div></div>
 
-        <div class="block bottom-block">
+        <div className={"block bottom-block"}>
             <h2>Почасовой прогноз</h2>
             <table>
                 <thead>
@@ -70,8 +84,8 @@ const Weather = () => {
                 </tbody>
             </table>
         </div>
-        
-        <button type="button" class="btn btn-secondary" onClick={()=>fetchWeatherData()}>Обновить данные по прогнозу</button>
+
+        <button type="button" className={"btn btn-secondary"} onClick={()=>fetchWeatherData()}>Обновить данные по прогнозу</button>
       </>
   );
 };
