@@ -52,27 +52,16 @@ const Weather = () => {
           <div className={"middle-block-header"}>Прогноз погоды на 3 дня</div>
           <div className={'middle-row'}>
           {dailyForecast.map((day, index) => (
-            <div class="middle-item" key={index}>
+            <div className={"middle-item"} key={index}>
                       <p>Влажность: {day.avgHumidity} мм </p>
                       <p> Средняя температура: {day.avgTemp} °C</p> 
                       <p> Скорость ветра: {day.wind} m\c</p>
                     </div>
                   ))}
         </div></div>
-
-
         
-cloud
-dateTime "2026-04-20T00:00:00"
-feelsLike
-humidity
-pressure
-temperature
-windDirection
-windSpeed
-
         <div className={"block bottom-block"}>
-            <h2>Почасовой прогноз</h2>
+            <h2 className={'table-header'}>Почасовой прогноз</h2>
             <table>
                 <thead>
                   <tr>
