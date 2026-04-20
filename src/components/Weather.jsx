@@ -13,11 +13,11 @@ const Weather = () => {
       try {
         const currentResponse = await axios.get('https://www.mytsite.somee.com/api/weatherforecast/current'); // URL для получения текущего прогноза
         const dailyResponse = await axios.get('https://www.mytsite.somee.com/api/weatherforecast/three-day'); // URL для получения 3-дневного прогноза
-        //const hourlyResponse = await axios.get('https://www.mytsite.somee.com/api/weatherforecast/day-by-hours'); // URL для получения почасового прогноза
+        const hourlyResponse = await axios.get('https://www.mytsite.somee.com/api/weatherforecast/day-by-hours'); // URL для получения почасового прогноза
   
         setCurrentWeather(currentResponse.data);
         setDailyForecast(dailyResponse.data);
-        //setHourlyForecast(hourlyResponse.data);
+        setHourlyForecast(hourlyResponse.data);
 
       } catch (error) {
         console.error('Ошибка при получении данных о погоде', error);
@@ -35,11 +35,10 @@ const Weather = () => {
           {currentWeather && ( 
             <>
               <div className={"header"}>
-                <div className={'first'}>Прогноз на сегодня</div>
+                <div className={'first'}>Прогноз на сегодня {currentWeather.place.localTime.substr(0,10)}</div>
                 <div>{currentWeather.place.country} {currentWeather.place.placeName}</div>
               </div>
               <p>Облачность : {currentWeather.currentWeather.cloud}</p>
-              {/* <p>{currentWeather.currentWeather.dateTime}</p> */}
               <p>Температура по ощущению : {currentWeather.currentWeather.feelsLike}</p>
               <p>Влажность : {currentWeather.currentWeather.humidity}</p>
               <p>Давление : {currentWeather.currentWeather.pressure}</p>
@@ -50,15 +49,14 @@ const Weather = () => {
             )}
         </div>
 
-        <div className={"block middle-block"}>
-          
-          <div>3-дневный прогноз</div>
-          <div className={'row'}>
+        <div className={"block middle-block"}>          
+          <div className={"middle-block-header"}>Прогноз погоды на 3 дня</div>
+          <div className={'middle-row'}>
           {dailyForecast.map((day, index) => (
             <div class="middle-item" key={index}>
-                      <p>Влажность {day.avgHumidity} мм </p>
-                      <p> Средняя температура. {day.temperature} °C </p>
-                      <p> Скорость ветра {day.wind} m\c</p>
+                      <p>Влажность: {day.avgHumidity} мм </p>
+                      <p> Средняя температура: {day.avgTemp} °C </p> 
+                      <p> Скорость ветра: {day.wind} m\c</p>
                     </div>
                   ))}
         </div></div>

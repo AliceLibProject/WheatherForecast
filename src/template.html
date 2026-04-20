@@ -9,7 +9,7 @@
             margin: 0;
             font-family: Arial, sans-serif;
             
-		  background-image: url('site_bg21.jpg');
+		  background-image: url('images/site_bg21.jpg');
 		  background-size: cover;
 		  background-position: center;
 		  background-repeat: no-repeat;
@@ -50,21 +50,30 @@
             text-align: left;
         }
 
+        .middle-row{
+            justify-content: space-around;
+            display: flex;
+        }
+
         .middle-block {
             background-color: #d3d3d3; /* Светло-серый */
             padding: 20px;
-            display: flex;
-            flex-direction: row; /* Выровнять элементы по горизонтали */
+            font-weight: 500;
             gap: 10px; /* Промежуток между блоками */
+        }
+        .middle-block-header {
+            margin-bottom: 20px;
+            text-align: left;
+            margin-left: 25px;
         }
 
         .middle-item {
-            flex: 1; /* Направляет элементы занимать одинаковую ширину */
+            width: 30%;
             background-color: #e0e0e0; /* Чуть светлее цвета родителя */
             padding: 10px;
             color: #333; /* Темно-серый цвет текста */
             border-radius: 5px; /* Закругленные углы для элементов */
-            text-align: center; /* Центрировать текст внутри элементов */
+            text-align: left; /* Центрировать текст внутри элементов */
         }
 
         .bottom-block {

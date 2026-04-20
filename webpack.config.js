@@ -2,6 +2,8 @@ const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
+
 
 
 module.exports = {
@@ -35,6 +37,7 @@ module.exports = {
         extensions: ['.tsx', '.ts', '.jsx',  '.js', '.scss', '.css',],
     },
     plugins: [
+            new CopyPlugin({patterns: [{ from: 'src/assets/images', to: 'images' }]}),
             new HtmlWebPackPlugin({
                     title: 'webpack Boilerplate',
                     template: path.resolve(__dirname, './src/template.html'), // шаблон
