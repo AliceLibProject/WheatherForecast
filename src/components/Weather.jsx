@@ -8,7 +8,8 @@ const Weather = () => {
     const [currentWeather, setCurrentWeather] = useState(null);
     const [dailyForecast, setDailyForecast] = useState([]);
     const [hourlyForecast, setHourlyForecast] = useState([]);
-  
+    const [currentWeatherImage, setCurrentWeatherImage] = useState('');
+
     const fetchWeatherData = async () => {
       try {
         const currentResponse = await axios.get('https://www.mytsite.somee.com/api/weatherforecast/current'); // URL для получения текущего прогноза
@@ -18,7 +19,7 @@ const Weather = () => {
         setCurrentWeather(currentResponse.data);
         setDailyForecast(dailyResponse.data);
         setHourlyForecast(hourlyResponse.data);
-
+        getWeatherImageSrc(currentResponse.data);
       } catch (error) {
         console.error('Ошибка при получении данных о погоде', error);
       }
@@ -28,11 +29,29 @@ const Weather = () => {
       fetchWeatherData();
     }, []);
 
+    const getWeatherImageSrc = (currentWeather) => {
+       
+      if(currentWeather.currentWeather.cloud > 20 && currentWeather.currentWeather.cloud < 70)
+      {
+        setCurrentWeatherImage("sun_cloud.gif");
+      }
+      else if(currentWeather.currentWeather.cloud >= 0 && currentWeather.currentWeather.cloud < 20)
+      {
+        setCurrentWeatherImage("sun.gif");
+      }
+      else if(currentWeather.currentWeather.cloud < 70 && currentWeather.currentWeather.cloud <= 100)
+      {
+        setCurrentWeatherImage("cloud.gif")
+      }
+    }
+  
+
   return (
     <>
-        <div className={"block top-block"}>
+        <div className={"block top-block"}>          
           {currentWeather && ( 
             <>
+            <img src={`images/${currentWeatherImage}`} className={'top-img'}/>
               <div className={"header"}>
                 <div className={'first'}>Прогноз на сегодня {currentWeather.place.localTime.substr(0,10)}</div>
                 <div>{currentWeather.place.country} {currentWeather.place.placeName}</div>
@@ -62,7 +81,7 @@ const Weather = () => {
         
         <div className={"block bottom-block"}>
             <h2 className={'table-header'}>Почасовой прогноз</h2>
-            <table>
+            <table className={'table table-bordered'}>
                 <thead>
                   <tr>
                         <th>Облачность %</th>
