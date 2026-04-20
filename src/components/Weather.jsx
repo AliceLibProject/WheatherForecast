@@ -30,8 +30,7 @@ const Weather = () => {
 
   return (
     <>
-        <div className={"block top-block"}>          
-          {/* latitude longtitude */}
+        <div className={"block top-block"}>
           {currentWeather && ( 
             <>
               <div className={"header"}>
@@ -55,28 +54,48 @@ const Weather = () => {
           {dailyForecast.map((day, index) => (
             <div class="middle-item" key={index}>
                       <p>Влажность: {day.avgHumidity} мм </p>
-                      <p> Средняя температура: {day.avgTemp} °C </p> 
+                      <p> Средняя температура: {day.avgTemp} °C</p> 
                       <p> Скорость ветра: {day.wind} m\c</p>
                     </div>
                   ))}
         </div></div>
+
+
+        
+cloud
+dateTime "2026-04-20T00:00:00"
+feelsLike
+humidity
+pressure
+temperature
+windDirection
+windSpeed
 
         <div className={"block bottom-block"}>
             <h2>Почасовой прогноз</h2>
             <table>
                 <thead>
                   <tr>
+                        <th>Облачность %</th>
                         <th>Время</th>
-                        <th>Температура</th>
-                        <th>Состояние</th>
+                        <th>Температура по ощущению °C</th>
+                        <th>Влажность %</th>
+                        <th>Давление мм</th>
+                        <th>Направление ветра</th>
+                        <th>Скорость ветра м\с</th>
                     </tr>
                 </thead>
                 <tbody>
                     {hourlyForecast.map((hour, index) => (
                     <tr key={index}>
-                      <td>{hour.time}</td>
-                      <td>{hour.temperature} °C</td>
-                      <td>{hour.condition} °C</td> 
+                      <td>{hour.cloud}</td>
+                      <td>{hour.dateTime.replace('T', ' ')}</td>
+                      <td>{hour.feelsLike}</td> 
+                      <td>{hour.humidity}</td> 
+                      <td>{hour.pressure}</td>
+                      <td>{hour.temperature}</td>
+                      <td>{hour.windDirection}</td>
+                      <td>{hour.windSpeed}</td>
                     </tr>
                   ))}
                 </tbody>
