@@ -39,7 +39,7 @@ module.exports = {
     plugins: [
             new CopyPlugin({patterns: [{ from: 'src/assets/images', to: 'images' }]}),
             new HtmlWebPackPlugin({
-                    title: 'webpack Boilerplate',
+                    title: 'Weather forecast service',
                     template: path.resolve(__dirname, './src/template.html'), // шаблон
                     filename: 'index.html', // название выходного файла
             }),
